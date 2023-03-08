@@ -17,8 +17,6 @@ function App() {
 
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  console.log('isMobile', isMobile)
-
   const getAllTargets = async () => {
     const targets = await axios.get('https://novecentrum.onrender.com/targets/list');
     setTargets(targets.data);
@@ -31,8 +29,13 @@ function App() {
 
   useEffect(() => {
     getAllTargets();
-    getAllArticles()
+    getAllArticles();
   }, []);
+
+  setInterval(() => {
+    getAllTargets();
+    getAllArticles();
+  }, 10000)
 
   return (
     <>
