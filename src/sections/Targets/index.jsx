@@ -21,7 +21,7 @@ const Targets = ({targets, isMobile}) => {
           </Box>
         </Grid>
         <Grid item xs={12} md={12} lg={6} order={isMobile ? 1 : 2}>
-          <TargetList targets={targets} />
+          <TargetList targets={targets} isMobile={isMobile} />
         </Grid>
       </SectionWrapper>
     </Box>

@@ -29,14 +29,29 @@ const Header = ({isMobile}) => {
       <Box sx={{cursor: 'pointer'}} onClick={() => handleScroll("about", isMobile)}>
         {logo()}
       </Box>
-      <Box display="flex" alignItems="center">
-        <Box>
-          <StyledMenuItem color="#fff" variant="text18b" onClick={() => handleScroll("articles")}>
-            Новости
-          </StyledMenuItem>
-          <FeedbackButton clickButtonHandler={openFeedbackModal} />
-        </Box>
-      </Box>
+      {isMobile
+        ? (
+          <Box>fdsfs</Box>
+        ) : (
+          <Box display="flex" alignItems="center">
+            <StyledMenuItem
+              color="#fff"
+              variant="text18b"
+              onClick={() => handleScroll("gallery")}
+            >
+              Галерея
+            </StyledMenuItem>
+            <StyledMenuItem
+              color="#fff"
+              variant="text18b"
+              onClick={() => handleScroll("articles")}
+            >
+              Новости
+            </StyledMenuItem>
+            <FeedbackButton clickButtonHandler={openFeedbackModal} />
+          </Box>
+        )
+      }
     </StyledHeader>
   );
 };

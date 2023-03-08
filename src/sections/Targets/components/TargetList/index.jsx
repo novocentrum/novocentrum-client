@@ -3,7 +3,7 @@ import React from 'react';
 import {StyledTargetList, StyledTargetItem} from './styled.ts';
 import TargetStatusBadge from "./components/TargetStatusBadge";
 
-const TargetList = ({targets}) => {
+const TargetList = ({targets, isMobile}) => {
   return (
     <StyledTargetList>
       <Typography variant="text16sb" mb="16px">
@@ -12,9 +12,9 @@ const TargetList = ({targets}) => {
       {targets.map(target => (
         <StyledTargetItem key={target._id}>
           <Typography variant="text16">
-            {target.text}
+            – {target.text}
+            <TargetStatusBadge target={target} isMobile={isMobile} />
           </Typography>
-          <TargetStatusBadge target={target} />
         </StyledTargetItem>
       ))}
     </StyledTargetList>
