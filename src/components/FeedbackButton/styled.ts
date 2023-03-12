@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 
-export const StyledFeedbackButton = styled('button')<{isInsideFooter}>`
+export const StyledFeedbackButton = styled('button')<{isInsideFooter, fullWidth}>`
   height: 48px;
+  width: ${({fullWidth}) => fullWidth ? '100%' : 'auto'};
   padding: 0 24px;
   color: #fff;
   background-color: transparent;
   border: ${({isInsideFooter}) => isInsideFooter
-    ? '2px solid #F2F7F2'
+    ? '2px solid #3A859A'
     : '2px solid #fff'
   };
   border-radius: 0.5rem;

@@ -7,7 +7,7 @@ import {objects} from "./data";
 const Objects = ({isMobile}) => {
   return (
     <Box maxWidth={1240} margin="0 auto">
-      <SectionTitle title="Что там будет?" />
+      <SectionTitle title="Что там будет?" isMobile={isMobile} />
       <Grid
         container
         // columnSpacing="20px"

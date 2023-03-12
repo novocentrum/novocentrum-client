@@ -1,3 +1,4 @@
+import {Typography} from "@mui/material";
 import React, {useState} from 'react';
 import {
   StyledDialog,
@@ -6,7 +7,6 @@ import {
   StyledButton
 } from './styled.ts';
 import SectionTitle from "../SectionTitle";
-import {Typography} from "@mui/material";
 
 const FeedbackDialog = ({isOpen, closeModal, isMobile}) => {
   const [infoToEmail, setInfoToEmail] = useState({
@@ -28,7 +28,7 @@ const FeedbackDialog = ({isOpen, closeModal, isMobile}) => {
       onClose={closeModal}
       isMobile={isMobile}
     >
-      <SectionTitle title="Обратная связь" />
+      <SectionTitle title="Обратная связь" isMobile={isMobile} />
       <StyledInput
         type="text"
         placeholder="Имя и фамилия"

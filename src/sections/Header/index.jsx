@@ -1,37 +1,71 @@
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import React, {useState} from "react";
 import {StyledHeader, StyledMenuItem} from "./styled.ts";
-import {logo} from "../../constants/logo.js"
+import MobileMenu from "./components/MobileMenu";
+import {LogoIcon} from "../../themes/icons.js"
 import {handleScroll} from "../../utils/handleScroll";
 import FeedbackButton from "../../components/FeedbackButton";
-import FeedbackDialog from "../../components/FeedbackDialog";
+import './style.scss';
 
-const Header = ({isMobile}) => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+const Header = ({
+  openFeedbackModal,
+  isMobile
+}) => {
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
 
-  const openFeedbackModal = () => {
-    setIsOpenModal(true);
-  };
-
-  const closeFeedbackModal = () => {
-    setIsOpenModal(false);
+  const clickOnMenuHandler = () => {
+    setIsOpenMenu(prev => !prev);
   };
 
   return (
-    <StyledHeader>
-      {isOpenModal && (
-        <FeedbackDialog
-          isOpen={isOpenModal}
-          closeModal={closeFeedbackModal}
-          isMobile={isMobile}
-        />
+    <StyledHeader isMobile={isMobile}>
+      {isMobile &&  (
+        <Box className={isOpenMenu ? "nav__menu open" : "nav__menu"}>
+          <Box className={isOpenMenu ? "nav__content" : "nav__content"}>
+            <Typography
+              variant="text18b"
+              color="#fff"
+              mb="24px"
+              onClick={() => {
+                openFeedbackModal();
+                clickOnMenuHandler();
+              }}
+            >
+              Обратная связь
+            </Typography>
+            <Typography
+              variant="text18b"
+              color="#fff"
+              mb="24px"
+              onClick={() => {
+                handleScroll("articles");
+                clickOnMenuHandler();
+              }}
+            >
+              Новости
+            </Typography>
+            <Typography
+              variant="text18b"
+              color="#fff"
+              onClick={() => {
+                handleScroll("gallery");
+                clickOnMenuHandler();
+              }}
+            >
+              Галерея
+            </Typography>
+          </Box>
+        </Box>
       )}
       <Box sx={{cursor: 'pointer'}} onClick={() => handleScroll("about", isMobile)}>
-        {logo()}
+        <LogoIcon />
       </Box>
       {isMobile
         ? (
-          <Box>fdsfs</Box>
+          <MobileMenu
+            isOpenMenu={isOpenMenu}
+            clickOnMenuHandler={clickOnMenuHandler}
+          />
         ) : (
           <Box display="flex" alignItems="center">
             <StyledMenuItem

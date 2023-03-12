@@ -7,10 +7,10 @@ import SectionTitle from "../../components/SectionTitle";
 const Articles = ({articles, isMobile}) => {
   return (
     <Box maxWidth={1240} margin="0 auto">
-      <SectionTitle title="Актуальные новости" />
+      <SectionTitle title="Актуальные новости" isMobile={isMobile} />
       <SectionWrapper isMobile={isMobile}>
         <Grid item xs={12} md={12} lg={6} order={isMobile ? 2: 1}>
-          <ArticlesList articles={articles} />
+          <ArticlesList articles={articles} isMobile={isMobile} />
         </Grid>
         <Grid item xs={12} md={12} lg={6} order={isMobile ? 1 : 2}>
           <Box
@@ -19,6 +19,7 @@ const Articles = ({articles, isMobile}) => {
             display="flex"
             justifyContent="center"
             alignItems="flex-start"
+            sx={{ img: {maxWidth: '90%'} }}
           >
             <img src="/images/articles-image.png" alt="Targets image" />
           </Box>

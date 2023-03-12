@@ -1,0 +1,32 @@
+.nav__menu {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000000CC;
+  height: 100vh;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+
+  &.open {
+    height: 100vh;
+    opacity: 1;
+  }
+
+  .nav__content {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 0 0 0;
+    height: 0;
+    transition: all 0.3s ease-in-out;
+    background-color: #47A1A6;
+  }
+
+  &.open .nav__content {
+    opacity: 1;
+    height: 150px;
+  }
+}

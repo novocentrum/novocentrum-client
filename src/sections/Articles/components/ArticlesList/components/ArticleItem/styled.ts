@@ -9,10 +9,6 @@ export const StyledWrapper = styled(Box)`
   background-color: #F3F6F0;
   border-radius: 8px;
   
-  > span:nth-of-type(1) {
-    margin-bottom: 12px;
-  }
-  
   :last-of-type {
     margin-bottom: 0;
   }

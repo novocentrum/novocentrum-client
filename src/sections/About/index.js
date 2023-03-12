@@ -7,8 +7,14 @@ import SectionTitle from "../../components/SectionTitle";
 const About = ({isMobile}) => {
   return (
     <SectionWrapper isMobile={isMobile}>
-      <Grid item xs={12} md={12} lg={5.5} order={isMobile ? 2 : 1}>
-        <SectionTitle title="Что это за проект?" />
+      <Grid
+        item xs={12}
+        md={12}
+        lg={5.5}
+        order={isMobile ? 2 : 1}
+        pt={isMobile ? '32px !important' : 0}
+      >
+        <SectionTitle title="Что это за проект?" isMobile={isMobile} />
         <AboutText isMobile={isMobile} />
       </Grid>
       <Grid item xs={12} md={12} lg={6.5} order={isMobile ? 1 : 2}>

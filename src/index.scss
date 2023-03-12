@@ -33,11 +33,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  background: linear-gradient(148.18deg, #EDEFF6 0%, #EDF6F5 17.19%, #EDF6F5 44.79%, #F6F6ED 100%);
   margin: 0;
   font-family: 'Gilroy', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.body {
+  background: linear-gradient(148.18deg, #EDEFF6 0%, #EDF6F5 17.19%, #EDF6F5 44.79%, #F6F6ED 100%);
+
+  &__mobile {
+    background: linear-gradient(148.18deg, #EDEFF6 0%, #EDF6F5 16.67%, #F6F6ED 100%);
+  }
 }
 
 code {
@@ -62,6 +69,8 @@ code {
   &--mobile {
     margin-top: 60px;
     padding: 40px 20px 32px 20px;
+    background: url("../public/images/about-background-mobile.png") no-repeat;
+    background-size: 100%;
   }
 }
 
@@ -70,7 +79,7 @@ code {
   padding: 48px 100px;
 
   &--mobile {
-    padding: 32px 20px 0 20px;
+    padding: 32px 20px 16px 20px;
   }
 }
 
@@ -80,7 +89,7 @@ code {
   background-color: #fff;
 
   &--mobile {
-    padding: 32px 20px 0 20px;
+    padding: 32px 20px 24px 20px;
     background-color: #fff;
   }
 }
@@ -100,7 +109,17 @@ code {
   background-color: #fff;
 
   &--mobile {
-    padding: 32px 20px 0 20px;
+    padding: 24px 20px;
     background-color: #fff;
+  }
+}
+
+.footer {
+  padding: 24px 100px;
+  background-color: #000;
+
+  &--mobile {
+    padding: 24px 16px;
+    background-color: #000;
   }
 }

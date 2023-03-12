@@ -64,24 +64,30 @@ export const theme = createTheme({
       letterSpacing: '0.5px'
     },
     text18: {
-      fontSize: 16,
+      fontSize: 18,
       fontWeight: 400,
       lineHeight: '150%',
       letterSpacing: '0.5px'
     },
     text18m: {
-      fontSize: 16,
+      fontSize: 18,
       fontWeight: 500,
       lineHeight: '150%',
       letterSpacing: '0.5px'
     },
     text18b: {
-      fontSize: 16,
+      fontSize: 18,
       fontWeight: 700,
       lineHeight: '150%',
       letterSpacing: '0.5px'
     },
-    text40: {
+    text26b: {
+      fontSize: 26,
+      fontWeight: 700,
+      lineHeight: '150%',
+      letterSpacing: '0.5px'
+    },
+    text40b: {
       fontSize: 40,
       fontWeight: 700,
       lineHeight: '150%',

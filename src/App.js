@@ -8,14 +8,25 @@ import Divider from "./components/Divider";
 import Articles from "./sections/Articles";
 import Objects from "./sections/Objects";
 import Gallery from "./sections/Gallery";
+import Footer from "./sections/Footer";
+import FeedbackDialog from "./components/FeedbackDialog";
 import {theme} from "./themes/theme";
 import './index.scss';
 
 function App() {
   const [targets, setTargets] = useState([]);
   const [articles, setArticles] = useState([]);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const openFeedbackModal = () => {
+    setIsOpenModal(true);
+  };
+
+  const closeFeedbackModal = () => {
+    setIsOpenModal(false);
+  };
 
   const getAllTargets = async () => {
     const targets = await axios.get('https://novecentrum.onrender.com/targets/list');
@@ -32,15 +43,18 @@ function App() {
     getAllArticles();
   }, []);
 
-  setInterval(() => {
-    getAllTargets();
-    getAllArticles();
-  }, 10000)
-
   return (
-    <>
+    <div className={isMobile ? 'body__mobile' : 'body'}>
+      <FeedbackDialog
+        isOpen={isOpenModal}
+        closeModal={closeFeedbackModal}
+        isMobile={isMobile}
+      />
       <header id="header">
-        <Header isMobile={isMobile} />
+        <Header
+          openFeedbackModal={openFeedbackModal}
+          isMobile={isMobile}
+        />
       </header>
       <section
         id="about"
@@ -48,7 +62,7 @@ function App() {
       >
         <About isMobile={isMobile} />
       </section>
-      <Divider />
+      <Divider isMobile={isMobile} />
       <section
         id="targets"
         className={isMobile ? "section-targets--mobile" : "section-targets"}
@@ -61,21 +75,30 @@ function App() {
       >
         <Articles articles={articles} isMobile={isMobile} />
       </section>
-      <Divider isWhiteBackground={true} />
+      <Divider isWhiteBackground={true} isMobile={isMobile} />
       <section
         id="objects"
         className={isMobile ? "section-objects--mobile" : "section-objects"}
       >
         <Objects isMobile={isMobile} />
       </section>
-      <Divider isWhiteBackground={true} />
+      <Divider isWhiteBackground={true} isMobile={isMobile} />
       <section
         id="gallery"
         className={isMobile ? "section-gallery--mobile" : "section-gallery"}
       >
         <Gallery isMobile={isMobile}/>
       </section>
-    </>
+      <footer
+        id="footer"
+        className={isMobile ? "footer--mobile" : "footer"}
+      >
+        <Footer
+          openFeedbackModal={openFeedbackModal}
+          isMobile={isMobile}
+        />
+      </footer>
+    </div>
   );
 }
 

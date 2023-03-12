@@ -1,5 +1,5 @@
 import React from 'react';
-import {ArrowUpIcon, ArrowDownIcon} from "../../../../../../constants/icons";
+import {ArrowUpIcon, ArrowDownIcon} from "../../../../../../themes/icons";
 import {Box} from "@mui/material";
 
 const ButtonItem = ({icon}) => (
@@ -15,20 +15,21 @@ const ButtonItem = ({icon}) => (
 );
 
 const ControlButtons = ({
-  onIconClick,
+  onUpIconClick,
+  onDownIconClick,
   isDisabledUpButton,
   isDisabledDownButton
 }) => {
   return (
-    <Box display="flex" justifyContent="flex-start" height="48px" mt="12px">
-      <Box onClick={onIconClick}>
+    <Box display="flex" justifyContent="flex-start" height="48px">
+      <Box onClick={onUpIconClick}>
         <ButtonItem icon={
           <ArrowUpIcon
             color={isDisabledUpButton ? '#0000004D' : '#00000099'} />
           }
         />
       </Box>
-      <Box onClick={onIconClick}>
+      <Box onClick={onDownIconClick}>
         <ButtonItem icon={
           <ArrowDownIcon
             color={isDisabledDownButton ? '#0000004D' : '#00000099'} />

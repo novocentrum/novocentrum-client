@@ -4,11 +4,16 @@ import {Typography} from "@mui/material";
 
 const FeedbackButton = ({
   isInsideFooter,
+  fullWidth,
   clickButtonHandler,
   title
 }) => {
   return (
-    <StyledFeedbackButton isInsideFooter={isInsideFooter} onClick={clickButtonHandler}>
+    <StyledFeedbackButton
+      isInsideFooter={isInsideFooter}
+      fullWidth={fullWidth}
+      onClick={clickButtonHandler}
+    >
       <Typography variant="text18b">
         {title ?? 'Обратная связь'}
       </Typography>

@@ -1,12 +1,12 @@
 import React from 'react';
 import {Typography} from "@mui/material";
 
-const SectionTitle = ({title}) => {
+const SectionTitle = ({title, isMobile}) => {
   return (
     <Typography
-      variant="text40"
+      variant={isMobile ? "text26b" : "text40b"}
       color="#000"
-      mb="32px"
+      mb={isMobile ? '24px' : '32px'}
       component="h2"
     >
       {title}
