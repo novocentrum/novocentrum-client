@@ -6,7 +6,7 @@ import {
   StyledTextarea,
   StyledButton
 } from './styled.ts';
-import SectionTitle from "../SectionTitle";
+import {SectionTitle} from "../SectionTitle";
 
 const FeedbackDialog = ({isOpen, closeModal, isMobile}) => {
   const [infoToEmail, setInfoToEmail] = useState({

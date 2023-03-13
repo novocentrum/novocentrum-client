@@ -43,6 +43,7 @@ body {
   background: linear-gradient(148.18deg, #EDEFF6 0%, #EDF6F5 17.19%, #EDF6F5 44.79%, #F6F6ED 100%);
 
   &__mobile {
+    overflow: hidden;
     background: linear-gradient(148.18deg, #EDEFF6 0%, #EDF6F5 16.67%, #F6F6ED 100%);
   }
 }
