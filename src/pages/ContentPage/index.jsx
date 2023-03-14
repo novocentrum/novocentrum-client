@@ -1,6 +1,7 @@
 import {useMediaQuery} from "@mui/material";
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {motion} from 'framer-motion';
 import Header from "../../sections/content/Header";
 import About from "../../sections/content/About";
 import Divider from "../../components/Divider";
@@ -12,7 +13,6 @@ import Footer from "../../sections/content/Footer";
 import FeedbackDialog from "../../components/FeedbackDialog";
 import {theme} from "../../themes/theme";
 import '../../index.scss';
-import {motion} from 'framer-motion';
 
 const ContentPage = () => {
   const [targets, setTargets] = useState([]);
@@ -54,66 +54,68 @@ const ContentPage = () => {
   }, []);
 
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className={isMobile ? 'body__mobile' : 'body'}
-    >
+    <>
       <FeedbackDialog
         isOpen={isOpenModal}
         closeModal={closeFeedbackModal}
         isMobile={isMobile}
       />
-      <header id="header">
-        <Header
-          openFeedbackModal={openFeedbackModal}
-          isMobile={isMobile}
-        />
-      </header>
-      <section
-        id="about"
-        className={isMobile ? "section-about--mobile" : "section-about"}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className={isMobile ? 'body__mobile' : 'body'}
       >
-        <About isMobile={isMobile} />
-      </section>
-      <Divider isMobile={isMobile} />
-      <section
-        id="targets"
-        className={isMobile ? "section-targets--mobile" : "section-targets"}
-      >
-        <Targets targets={targets} isMobile={isMobile} />
-      </section>
-      <section
-        id="articles"
-        className={isMobile ? "section-articles--mobile" : "section-articles"}
-      >
-        <Articles articles={articles} isMobile={isMobile} />
-      </section>
-      <Divider isWhiteBackground={true} isMobile={isMobile} />
-      <section
-        id="objects"
-        className={isMobile ? "section-objects--mobile" : "section-objects"}
-      >
-        <Objects isMobile={isMobile} />
-      </section>
-      <Divider isWhiteBackground={true} isMobile={isMobile} />
-      <section
-        id="gallery"
-        className={isMobile ? "section-gallery--mobile" : "section-gallery"}
-      >
-        <Gallery images={images} isMobile={isMobile}/>
-      </section>
-      <footer
-        id="footer"
-        className={isMobile ? "footer--mobile" : "footer"}
-      >
-        <Footer
-          openFeedbackModal={openFeedbackModal}
-          isMobile={isMobile}
-        />
-      </footer>
-    </motion.div>
+        <header id="header">
+          <Header
+            openFeedbackModal={openFeedbackModal}
+            isMobile={isMobile}
+          />
+        </header>
+        <section
+          id="about"
+          className={isMobile ? "section-about--mobile" : "section-about"}
+        >
+          <About isMobile={isMobile} />
+        </section>
+        <Divider isMobile={isMobile} />
+        <section
+          id="targets"
+          className={isMobile ? "section-targets--mobile" : "section-targets"}
+        >
+          <Targets targets={targets} isMobile={isMobile} />
+        </section>
+        <section
+          id="articles"
+          className={isMobile ? "section-articles--mobile" : "section-articles"}
+        >
+          <Articles articles={articles} isMobile={isMobile} />
+        </section>
+        <Divider isWhiteBackground={true} isMobile={isMobile} />
+        <section
+          id="objects"
+          className={isMobile ? "section-objects--mobile" : "section-objects"}
+        >
+          <Objects isMobile={isMobile} />
+        </section>
+        <Divider isWhiteBackground={true} isMobile={isMobile} />
+        <section
+          id="gallery"
+          className={isMobile ? "section-gallery--mobile" : "section-gallery"}
+        >
+          <Gallery images={images} isMobile={isMobile}/>
+        </section>
+        <footer
+          id="footer"
+          className={isMobile ? "footer--mobile" : "footer"}
+        >
+          <Footer
+            openFeedbackModal={openFeedbackModal}
+            isMobile={isMobile}
+          />
+        </footer>
+      </motion.div>
+    </>
   );
 };
 

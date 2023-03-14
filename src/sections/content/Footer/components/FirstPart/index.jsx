@@ -53,9 +53,12 @@ const FirstPart = ({
       <Box
         display="flex"
         order={isMobile ? 1 : 2}
+        onClick={() => {
+          openFeedbackModal();
+          console.log('CLICK')
+        }}
       >
         <FeedbackButton
-          clickButtonHandler={openFeedbackModal}
           isInsideFooter={true}
           fullWidth={true}
         />

@@ -19,7 +19,7 @@ const Header = ({
 
   return (
     <StyledHeader isMobile={isMobile}>
-      {isMobile &&  (
+      {isMobile && (
         <Box className={isOpenMenu ? "nav__menu open" : "nav__menu"}>
           <Box className={isOpenMenu ? "nav__content" : "nav__content"}>
             <Typography
