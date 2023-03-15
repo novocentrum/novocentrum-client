@@ -7,31 +7,44 @@ import Button from "../../../components/Button";
 
 const AdminTargets = () => {
   const [targets, setTargets] = useState([]);
-  const [inProgressTargetIndex, setInProgressTargetIndex] = useState(null);
+  const [inProgressTarget, setInProgressTarget] = useState(null);
   const [inProgressStatus, setInProgressStatus] = useState('');
+
+  const changeTargetStatus = (id) => {
+    const findedTarget = targets.find((target) => {
+      return target._id === id;
+    });
+
+    const idx = targets.findIndex((target) => {
+      return target._id === id;
+    });
+
+    const targetsCopy = [...targets];
+
+    if (findedTarget.status === 'finished') {
+      setInProgressStatus('inProgress');
+      targetsCopy[idx] = {...findedTarget, status: 'inProgress'};
+      return setTargets(targetsCopy);
+    }
+
+    if (findedTarget.status === 'inProgress') {
+      setInProgressStatus('finished');
+      targetsCopy[idx] = {...findedTarget, status: 'finished'}
+      return setTargets(targetsCopy);
+    }
+  };
 
   const getTargets = async () => {
     const targets = await axios.get('http://localhost:8080/targets/list');
     setTargets(targets.data);
-    const idx = targets.data.findIndex((target) => {
+    const findedTarget = targets.data.find((target) => {
       return target.status === 'inProgress';
     });
-    setInProgressTargetIndex(idx);
+    setInProgressTarget(findedTarget);
   };
-
-  // const changeTargetStatus = async () => {
-  //   const updatedTargets = await axios.post(`http://localhost:8080/targets/change-status/${finishedTargetId}`, {
-  //     status: 'finished',
-  //   });
-  //   setTargets(updatedTargets.data);
-  // };
 
   const onSaveClick = async () => {
     const idx = targets.findIndex((target) => {
-      return target.status === 'inProgress';
-    });
-
-    const inProgressTarget = targets.find((target) => {
       return target.status === 'inProgress';
     });
 
@@ -39,23 +52,12 @@ const AdminTargets = () => {
     targetsCopy[idx] = {...targetsCopy[idx], status: 'finished'};
     targetsCopy[idx + 1] = {...targetsCopy[idx + 1], status: 'inProgress'};
 
-    const inProgressIndex = targetsCopy.findIndex((target) => {
-      return target.status === 'inProgress';
-    });
-
     const updatedTargets = await axios.post(`http://localhost:8080/targets/change-status/${inProgressTarget._id}`, {
       status: inProgressStatus,
     });
-    console.log('updatedTargets', updatedTargets.data)
 
-    setInProgressTargetIndex(inProgressIndex);
     return setTargets(updatedTargets.data);
   };
-
-  useEffect(() => {
-    console.log('targets', targets);
-    console.log('inProgressStatus', inProgressStatus)
-  }, [targets, inProgressStatus])
 
   useEffect(() => {
     getTargets();
@@ -73,7 +75,8 @@ const AdminTargets = () => {
               key={target._id}
               target={target}
               isDisabledTarget={target.status !== 'inProgress' && target.status !== 'finished'}
-              setInProgressStatus={setInProgressStatus}
+              inProgressTarget={inProgressTarget}
+              changeTargetStatus={changeTargetStatus}
             />
           )
         })}
