@@ -2,15 +2,16 @@ import React from 'react';
 import {StyledInput} from "./styled.ts";
 
 const InputField = (props) => {
-  const {value, onChange, placeholder, backgroundColor, mask} = props;
+  const {value, name, placeholder, backgroundColor, mask, onChange} = props;
 
   return (
     <StyledInput
       value={value}
-      onChange={onChange}
+      name={name}
       placeholder={placeholder}
       backgroundColor={backgroundColor}
       mask={mask}
+      onChange={onChange}
     />
   );
 };

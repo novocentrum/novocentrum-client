@@ -1,29 +1,23 @@
-import {Box, Typography} from "@mui/material";
-import React, {useState} from 'react';
-import InputField from "../../../../../components/InputField";
-import {
-  StyledWrapper,
-  StyledInputField,
-  StyledCheckboxWrapper
-} from './styled.ts';
+import {Typography} from "@mui/material";
+import React, {useEffect, useState} from 'react';
+import {StyledWrapper, StyledCheckboxWrapper} from './styled.ts';
 
 const TargetItem = ({
-  finalDate,
-  setFinalDate,
   target,
-  isInProgressTarget,
-  onCheckboxClick,
+  isDisabledTarget,
+  setInProgressStatus
 }) => {
   const [newTarget, setNewTarget] = useState(target);
 
-  const isDisabledTarget =
-    target.status === 'pending' ||
-    (target.status === 'inProgress' && !finalDate);
+  const changeStatusHandler = () => {
+    if (newTarget.status === 'finished') {
+      setInProgressStatus('inProgress');
+      return setNewTarget({...newTarget, status: 'inProgress'});
+    }
 
-  const onClickHandler = () => {
-    if (newTarget.status !== 'finished' && !isDisabledTarget) {
-      setNewTarget({...newTarget, status: 'finished'});
-      onCheckboxClick({...target, status: 'finished'});
+    if (newTarget.status === 'inProgress') {
+      setInProgressStatus('finished');
+      return setNewTarget({...newTarget, status: 'finished'});
     }
   };
 
@@ -32,25 +26,20 @@ const TargetItem = ({
       <Typography variant="text16" color="#000">
         {newTarget.text}
       </Typography>
-      <StyledCheckboxWrapper isDisabledTarget={isDisabledTarget} onClick={onClickHandler}>
+      <StyledCheckboxWrapper>
         <input
           id="status-checkbox"
           type="checkbox"
           checked={newTarget.status === 'finished'}
           disabled={isDisabledTarget}
+          onChange={() => {
+            if (newTarget.status !== 'finished') {
+              changeStatusHandler();
+            }
+          }}
         />
         <label htmlFor="status-checkbox"></label>
       </StyledCheckboxWrapper>
-      {(isInProgressTarget || target.status === 'inProgress') && (
-        <StyledInputField>
-          <InputField
-            mask="99.99.9999"
-            placeholder="DD.MM.YYYY"
-            onChange={(e) => setFinalDate(e.target.value)}
-            value={finalDate}
-          />
-        </StyledInputField>
-      )}
     </StyledWrapper>
   );
 };

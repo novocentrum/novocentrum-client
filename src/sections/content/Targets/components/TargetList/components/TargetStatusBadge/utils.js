@@ -9,14 +9,12 @@ export const getStatusBadgeColor = (status) => {
   }
 };
 
-export const getStatusBadgeText = (status, finalDate) => {
+export const getStatusBadgeText = (status) => {
   switch (status) {
     case 'finished':
       return 'Выполнено'
     case 'inProgress':
-      return finalDate
-        ? `В процессе до ${finalDate}`
-        : 'В процессе';
+      return 'В процессе';
     default:
       return 'Скоро';
   }

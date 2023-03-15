@@ -44,16 +44,20 @@ export const StyledTextarea = styled('textarea')`
   }
 `;
 
-export const StyledButton = styled('button')`
+export const StyledButton = styled('button')<{isLoading}>`
   height: 48px;
   width: 145px;
   padding: 0 24px;
   color: #fff;
-  background-color: #3A859A;
+  background-color: ${({isLoading}) => isLoading ? 'grey' :'#3A859A'};
   border: 1px solid transparent;
   border-radius: 8px;
   cursor: pointer;
   transition: all .2s ease-in-out;
+  
+  :disabled {
+    background-color: grey;
+  }
   
   :hover {
     background-color: #fff;

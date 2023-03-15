@@ -7,67 +7,55 @@ import Button from "../../../components/Button";
 
 const AdminTargets = () => {
   const [targets, setTargets] = useState([]);
-  const [inProgressTarget, setInProgressTarget] = useState(null);
-  const [finalDate, setFinalDate] = useState(null);
-  const [finishedTargetId, setFinishedTargetId] = useState(null);
+  const [inProgressTargetIndex, setInProgressTargetIndex] = useState(null);
+  const [inProgressStatus, setInProgressStatus] = useState('');
 
   const getTargets = async () => {
     const targets = await axios.get('http://localhost:8080/targets/list');
     setTargets(targets.data);
-    const inProgressTarget = targets.data.filter(target => {
+    const idx = targets.data.findIndex((target) => {
       return target.status === 'inProgress';
-    })[0];
-
-    setFinalDate(inProgressTarget.finalDate);
-  };
-
-  const changeTargetStatus = async () => {
-    const updatedTargets = await axios.post(`http://localhost:8080/targets/change-status/${finishedTargetId}`, {
-      status: 'finished',
-      finalDate
     });
-    setTargets(updatedTargets.data);
+    setInProgressTargetIndex(idx);
   };
 
-  const changeTargetFinalDate = async () => {
-    const inProgressTargetId = targets.find(target => {
-      return target.status === "inProgress";
-    })._id;
+  // const changeTargetStatus = async () => {
+  //   const updatedTargets = await axios.post(`http://localhost:8080/targets/change-status/${finishedTargetId}`, {
+  //     status: 'finished',
+  //   });
+  //   setTargets(updatedTargets.data);
+  // };
 
-    await axios.post(`http://localhost:8080/targets/change-finalDate/${inProgressTargetId}`, {
-      finalDate
-    });
-  };
-
-  useEffect(() => {
-    console.log('finalDate', finalDate)
-  }, [finalDate])
-
-  const onCheckboxClick = (newTarget) => {
-    changeTargetStatus(newTarget._id, finalDate);
-
+  const onSaveClick = async () => {
     const idx = targets.findIndex((target) => {
-      return target._id === newTarget._id;
+      return target.status === 'inProgress';
+    });
+
+    const inProgressTarget = targets.find((target) => {
+      return target.status === 'inProgress';
     });
 
     const targetsCopy = [...targets];
-    targetsCopy[idx] = newTarget;
+    targetsCopy[idx] = {...targetsCopy[idx], status: 'finished'};
     targetsCopy[idx + 1] = {...targetsCopy[idx + 1], status: 'inProgress'};
 
-    setTargets(targetsCopy);
-
-    const firstPendingTarget = targets.filter(target => {
-      return target.status === 'pending';
-    })[0];
-
-    const inProgressTarget = targets.find(target => {
-      return target._id === firstPendingTarget._id;
+    const inProgressIndex = targetsCopy.findIndex((target) => {
+      return target.status === 'inProgress';
     });
 
-    setFinalDate(null);
-    setFinishedTargetId(newTarget._id);
-    return setInProgressTarget(inProgressTarget._id);
+    const updatedTargets = await axios.post(`http://localhost:8080/targets/change-status/${inProgressTarget._id}`, {
+      status: inProgressStatus,
+    });
+    console.log('updatedTargets', updatedTargets.data)
+
+    setInProgressTargetIndex(inProgressIndex);
+    return setTargets(updatedTargets.data);
   };
+
+  useEffect(() => {
+    console.log('targets', targets);
+    console.log('inProgressStatus', inProgressStatus)
+  }, [targets, inProgressStatus])
 
   useEffect(() => {
     getTargets();
@@ -79,22 +67,18 @@ const AdminTargets = () => {
         Цели для реализации:
       </Typography>
       <Box mb="24px">
-        {targets.map(target => (
-          <TargetItem
-            key={target._id}
-            target={target}
-            isInProgressTarget={inProgressTarget === target._id}
-            onCheckboxClick={onCheckboxClick}
-            finalDate={finalDate}
-            setFinalDate={setFinalDate}
-          />
-        ))}
+        {targets.map((target) => {
+          return (
+            <TargetItem
+              key={target._id}
+              target={target}
+              isDisabledTarget={target.status !== 'inProgress' && target.status !== 'finished'}
+              setInProgressStatus={setInProgressStatus}
+            />
+          )
+        })}
       </Box>
-      <Button
-        title="Сохранить"
-        onClick={changeTargetFinalDate}
-        disabled={!finalDate}
-      />
+      <Button title="Сохранить" onClick={onSaveClick} />
     </StyledContainer>
   );
 };

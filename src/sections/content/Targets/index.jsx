@@ -35,7 +35,7 @@ const Targets = ({targets, isMobile}) => {
               justifyContent="flex-start"
               alignItems="center"
               sx={{ img: {maxWidth: '100%'} }}
-              variants={leftAnimation}
+              variants={opacityAnimation}
               viewport={{ once: true }}
             >
               <img
@@ -45,7 +45,7 @@ const Targets = ({targets, isMobile}) => {
             </MotionBox>
           </Grid>
           <Grid item xs={12} md={12} lg={6}>
-            <motion.div variants={rightAnimation} viewport={{ once: true }}>
+            <motion.div variants={opacityAnimation} viewport={{ once: true }}>
               <TargetList targets={targets} isMobile={isMobile} />
             </motion.div>
           </Grid>

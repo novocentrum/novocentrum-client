@@ -4,7 +4,7 @@ import {motion} from "framer-motion";
 import AboutText from "./components/AboutText";
 import SectionWrapper from "../../../components/SectionWrapper";
 import {MotionSectionTitle} from "../../../components/SectionTitle";
-import {leftAnimation, rightAnimation} from "../../../utils/animations";
+import {leftAnimation, opacityAnimation, rightAnimation} from "../../../utils/animations";
 import MotionBox from "../../../components/MotionBox";
 
 const About = ({isMobile}) => {
@@ -17,14 +17,14 @@ const About = ({isMobile}) => {
         order={isMobile ? 2 : 1}
         pt={isMobile ? '32px !important' : 0}
       >
-        <motion.div variants={leftAnimation} viewport={{ once: true }}>
+        <motion.div variants={opacityAnimation} viewport={{ once: true }}>
           <MotionSectionTitle title="Что это за проект?" isMobile={isMobile} />
           <AboutText isMobile={isMobile} />
         </motion.div>
       </Grid>
       <Grid item xs={12} md={12} lg={6.5} order={isMobile ? 1 : 2}>
         <MotionBox
-          variants={rightAnimation}
+          variants={opacityAnimation}
           viewport={{ once: true }}
           width="100%"
           height="100%"
