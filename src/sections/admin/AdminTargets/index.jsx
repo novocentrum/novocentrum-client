@@ -35,7 +35,7 @@ const AdminTargets = () => {
   };
 
   const getTargets = async () => {
-    const targets = await axios.get('http://localhost:8080/targets/list');
+    const targets = await axios.get('https://novecentrum.onrender.com/targets/list');
     setTargets(targets.data);
     const findedTarget = targets.data.find((target) => {
       return target.status === 'inProgress';
@@ -81,7 +81,7 @@ const AdminTargets = () => {
           )
         })}
       </Box>
-      <Button title="Сохранить" onClick={onSaveClick} />
+      <Button title="Сохранить" onClick={onSaveClick}/>
     </StyledContainer>
   );
 };
