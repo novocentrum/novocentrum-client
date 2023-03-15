@@ -2,10 +2,7 @@ import styled from "@emotion/styled";
 import {Box} from "@mui/material";
 
 export const StyledWrapper = styled(Box)<{badgeсolor, targetStatus, isMobile}>`
-  display: ${({targetStatus, isMobile}) => targetStatus === 'inProgress' && isMobile 
-    ? 'block' 
-    : 'inline'
-  };
+  display: inline-block;
   height: 24px;
   width: fit-content;
   margin-left: 8px;
