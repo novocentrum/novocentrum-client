@@ -19,7 +19,7 @@ const LoginForm = ({setIsLoggedIn}) => {
   const onLoginClick = async () => {
     try {
       setIsLoading(true);
-      const isAbleToLogin = await axios.post('http://localhost:8080/users/login', user);
+      const isAbleToLogin = await axios.post('https://novecentrum.onrender.com/users/login', user);
       setIsLoggedIn(isAbleToLogin.data.isLoggedIn);
       localStorage.setItem('isLoggedIn', isAbleToLogin.data.isLoggedIn);
     } catch (e) {

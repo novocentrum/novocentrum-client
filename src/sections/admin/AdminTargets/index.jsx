@@ -52,7 +52,7 @@ const AdminTargets = () => {
     targetsCopy[idx] = {...targetsCopy[idx], status: 'finished'};
     targetsCopy[idx + 1] = {...targetsCopy[idx + 1], status: 'inProgress'};
 
-    const updatedTargets = await axios.post(`http://localhost:8080/targets/change-status/${inProgressTarget._id}`, {
+    const updatedTargets = await axios.post(`https://novecentrum.onrender.com/targets/change-status/${inProgressTarget._id}`, {
       status: inProgressStatus,
     });
 

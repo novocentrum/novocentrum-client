@@ -40,12 +40,12 @@ const FirstPart = ({
         isMobile={isMobile}
       >
         <Typography variant="text18b" color="#fff">
-          Contacts
+          Контакты
         </Typography>
         <Box display="flex" flexDirection={isMobile ? 'column' : 'row'}>
           <Row
             icon={<EmailIcon />}
-            text="info@example.com"
+            text="info@novecentrumrybare.cz"
             isUnderline={true}
           />
         </Box>
@@ -53,10 +53,7 @@ const FirstPart = ({
       <Box
         display="flex"
         order={isMobile ? 1 : 2}
-        onClick={() => {
-          openFeedbackModal();
-          console.log('CLICK')
-        }}
+        onClick={openFeedbackModal}
       >
         <FeedbackButton
           isInsideFooter={true}

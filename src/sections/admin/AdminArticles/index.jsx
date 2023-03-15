@@ -16,7 +16,7 @@ const AdminArticles = () => {
   const createArticle = async () => {
     try {
       setIsLoading(true);
-      await axios.post('http://localhost:8080/articles/create', { text: message });
+      await axios.post('https://novecentrum.onrender.com/articles/create', { text: message });
     } catch (e) {
       console.error('Error', e)
     } finally {

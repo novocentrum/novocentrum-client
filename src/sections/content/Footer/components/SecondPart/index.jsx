@@ -7,7 +7,10 @@ import {handleScroll} from "../../../../../utils/handleScroll";
 const SecondPart = () => {
   return (
     <StyledContainer>
-      <Box onClick={() => handleScroll("header")}>
+      <Box
+        sx={{cursor: 'pointer'}}
+        onClick={() => handleScroll("header")}
+      >
         <LogoIcon />
       </Box>
       <Typography variant="text12m" color="#C0C0C0">
