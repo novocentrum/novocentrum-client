@@ -1,7 +1,6 @@
 {
   "name": "novocentrum-client",
   "version": "0.1.0",
-  "homepage": "https://novocentrum.github.io/novocentrum-client",
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
@@ -30,7 +29,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "CI=false && react-scripts build",
-    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
