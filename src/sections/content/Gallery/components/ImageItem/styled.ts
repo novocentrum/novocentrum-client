@@ -29,14 +29,16 @@ export const StyledZoomButton = styled(Box)`
   transition: all 0.8s ease-in-out;
 `;
 
-export const StyledWrapper = styled(Grid)`
+export const StyledWrapper = styled(Grid)<{isMobile}>`
   position: relative;
   border-radius: 8px;
   cursor: pointer;
   
-  :hover > div {
-    opacity: 1;
-  }
+  ${(isMobile) => !isMobile && {
+    '&:hover > div': {
+      opacity: 1
+    }
+  }};
   
   img {
     width: 100%;

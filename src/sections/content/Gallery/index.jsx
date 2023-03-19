@@ -44,6 +44,7 @@ const Gallery = ({images, isMobile}) => {
           <ImageItem
             count={index + 1}
             key={image}
+            isMobile={isMobile}
             image={image}
             onClickImage={openImageModal}
             variants={imageAnimation}
