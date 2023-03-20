@@ -14,7 +14,7 @@ export const objects = [
   {
     id: 3,
     type: 'Парковочных мест',
-    description: 'Подземным этажи для парковки',
+    description: 'Подземные этажи для парковки',
     count: '100+'
   },
   {
